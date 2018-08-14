@@ -1,0 +1,13 @@
+
+<div [class]="priorityColor(currentRecipe)" *ngFor="let currentRecipe of childRecipeList">
+  <h4 (click)="showRecipe(currentRecipe)">{{currentRecipe.title}}</h4>
+  <div *ngIf="recipeToShow  && recipeToShow == currentRecipe">
+    <button (click)="editButtonClicked(recipeToShow)">Edit</button>
+    <ul>
+        <li *ngFor="let object of recipeToShow.ingredients">{{object.ingredient}}
+    </ul>
+    <ul>
+        <li *ngFor="let object of recipeToShow.directions">{{object.direction}}
+    </ul>
+  </div>
+</div>

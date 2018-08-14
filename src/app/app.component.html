@@ -10,17 +10,8 @@
   <form>
     <input [(ngModel)]="userName" type="text" name="user">
   </form>
-  <div [class]="priorityColor(currentRecipe)" *ngFor="let currentRecipe of recipies">
-    <h4 (click)="showRecipe(currentRecipe)">{{currentRecipe.title}}</h4> <button (click)="editTask(currentRecipe)">Edit</button>
-    <div *ngIf="recipeToShow  && recipeToShow == currentRecipe">
-      <ul>
-          <li *ngFor="let object of recipeToShow.ingredients">{{object.ingredient}}
-      </ul>
-      <ul>
-          <li *ngFor="let object of recipeToShow.directions">{{object.direction}}
-      </ul>
-    </div>
-  </div>
+  <app-recipe-list [childRecipeList]="masterRecipies" (clickSender)="editRecipe($event)"></app-recipe-list>
+
   <div *ngIf="selectedRecipe">
     <h3>{{selectedRecipe.title}}</h3>
     <p>Recipe Cooked? {{selectedRecipe.cooked}}</p>
@@ -30,8 +21,6 @@
     <br>
     <label>Edit recipe directions:</label>
     <div *ngFor="let object of selectedRecipe.directions">
-      <!-- <input  [(ngModel)]="{{direction}}" name="{{direction}}"> -->
-
       <input [(ngModel)]="object.direction">
     </div>
 
@@ -44,6 +33,7 @@
     <button (click)="finishedEditing()">Done</button>
   </div>
 </div>
+
 
 <!-- <tr *ngFor="let direction of selectedRecipe.directions">
   <td><input type="text"  [(ngModel)]="direction"></td>
