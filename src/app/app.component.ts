@@ -8,25 +8,29 @@ import { Recipe } from './models/recipe.model';
 })
 export class AppComponent {
   title = 'Recipe Box';
-
   recipies: Recipe[] = [
-    new Recipe('Flan', ['Condensed Milk', 'Sugar', 'Cinnamon'], ['Mix Milk, sugar, and cinnamon', 'Bake at 400 for 15 min', 'Eat'], 3),
-    new Recipe('Boiling Water', ['cold water'], ['add heat'], 1),
-    new Recipe('Peanut Butter and Jealous', ['Bread', 'Peanut Butter', 'Jealousy'], ['Apply Peanut Butter and Jealousy to Bread', 'taunt your friends with your awesome sandwich', 'Eat'], 6)
+    new Recipe('Flan', [{ingredient: 'Condensed Milk'}, {ingredient: 'Sugar'}, {ingredient: 'Cinnamon'} ], [{direction: 'Mix Milk, sugar, and cinnamon'}, {direction: 'Bake at 400 for 15 mi'}, {direction: 'Eat'}], 2),
+    new Recipe('Boiling Water',[{ingredient: 'cold water'}], [{direction: 'add heat'}], 1),
+    new Recipe('Peanut Butter and Jealous',[{ingredient: 'Bread'}, {ingredient: 'Peanut Butter'}, {ingredient: 'Jealousy'}], [{direction: 'Apply Peanut Butter and Jealousy to Bread'}, {direction: 'taunt your friends with your awesome sandwich'}, {direction: 'Eat'}], 3)
   ];
+  selectedRecipe = null;
 
-  editTask(){
-    alert("EditMe")
+  editTask(clickedRecipe){
+    this.selectedRecipe = clickedRecipe;
   }
 
   priorityColor(currentRecipe) {
-    if (currentRecipe.priority === 1) {
+    if (currentRecipe.priority === 3) {
       return "bg-danger";
-    } else if (currentRecipe.priority >=2 && currentRecipe.priority <=4){
+    } else if (currentRecipe.priority == 2){
       return "bg-warning";
     } else {
       return "bg-info";
     }
+  }
+
+  finishedEditing(){
+    this.selectedRecipe = null;
   }
 
 }
