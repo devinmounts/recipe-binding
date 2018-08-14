@@ -11,13 +11,15 @@
     <input [(ngModel)]="userName" type="text" name="user">
   </form>
   <div [class]="priorityColor(currentRecipe)" *ngFor="let currentRecipe of recipies">
-    <h4 >{{currentRecipe.title}}</h4> <button (click)="editTask(currentRecipe)">Edit</button>
-    <ul>
-        <li *ngFor="let object of currentRecipe.ingredients">{{object.ingredient}}
-    </ul>
-    <ul>
-        <li *ngFor="let object of currentRecipe.directions">{{object.direction}}
-    </ul>
+    <h4 (click)="showRecipe(currentRecipe)">{{currentRecipe.title}}</h4> <button (click)="editTask(currentRecipe)">Edit</button>
+    <div *ngIf="recipeToShow  && recipeToShow == currentRecipe">
+      <ul>
+          <li *ngFor="let object of recipeToShow.ingredients">{{object.ingredient}}
+      </ul>
+      <ul>
+          <li *ngFor="let object of recipeToShow.directions">{{object.direction}}
+      </ul>
+    </div>
   </div>
   <div *ngIf="selectedRecipe">
     <h3>{{selectedRecipe.title}}</h3>

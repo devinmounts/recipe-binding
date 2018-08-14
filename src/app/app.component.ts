@@ -14,13 +14,23 @@ export class AppComponent {
     new Recipe('Peanut Butter and Jealous',[{ingredient: 'Bread'}, {ingredient: 'Peanut Butter'}, {ingredient: 'Jealousy'}], [{direction: 'Apply Peanut Butter and Jealousy to Bread'}, {direction: 'taunt your friends with your awesome sandwich'}, {direction: 'Eat'}], 3)
   ];
   selectedRecipe = null;
+  recipeToShow = null;
 
   editTask(clickedRecipe){
     this.selectedRecipe = clickedRecipe;
   }
 
+  showRecipe(clickedRecipe){
+    if(this.recipeToShow == clickedRecipe){
+      this.recipeToShow = null;
+    } else {
+      this.recipeToShow = clickedRecipe;
+    }
+    ;
+  }
+
   priorityColor(currentRecipe) {
-    if (currentRecipe.priority === 3) {
+    if (currentRecipe.priority == 3) {
       return "bg-danger";
     } else if (currentRecipe.priority == 2){
       return "bg-warning";
