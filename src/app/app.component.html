@@ -11,30 +11,6 @@
     <input [(ngModel)]="userName" type="text" name="user">
   </form>
   <app-recipe-list [childRecipeList]="masterRecipies" (clickSender)="editRecipe($event)"></app-recipe-list>
-
-  <div *ngIf="selectedRecipe">
-    <h3>{{selectedRecipe.title}}</h3>
-    <p>Recipe Cooked? {{selectedRecipe.cooked}}</p>
-    <h3>Edit Recipe Title</h3>
-    <label for="">Edit Recipe Title</label>
-    <input [(ngModel)]="selectedRecipe.title">
-    <br>
-    <label>Edit recipe directions:</label>
-    <div *ngFor="let object of selectedRecipe.directions">
-      <input [(ngModel)]="object.direction">
-    </div>
-
-    <br>
-    <label>Enter Recipe Priority (1-3):</label>
-    <br>
-    <input type="radio" [(ngModel)]="selectedRecipe.priority" value="1">1 (Low Priority)<br>
-    <input type="radio" [(ngModel)]="selectedRecipe.priority" value="2">2 (Medium Priority)<br>
-    <input type="radio" [(ngModel)]="selectedRecipe.priority" value="3">3 (High Priority)
-    <button (click)="finishedEditing()">Done</button>
-  </div>
+  <app-edit-recipe [childSelectedRecipe]="selectedRecipe" (clickedDone)="finishedEditing()" ></app-edit-recipe>
+  <app-new-recipe></app-new-recipe>
 </div>
-
-
-<!-- <tr *ngFor="let direction of selectedRecipe.directions">
-  <td><input type="text"  [(ngModel)]="direction"></td>
-</table> -->
