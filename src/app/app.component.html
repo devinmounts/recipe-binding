@@ -1,0 +1,19 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="container">
+  <div class="jumbotron">
+    <div style="text-align:center">
+      <h1>
+        Welcome to {{ title }}!
+      </h1>
+    </div>
+  </div>
+  <div [class]="priorityColor(currentRecipe)" *ngFor="let currentRecipe of recipies">
+    <h4 >{{currentRecipe.title}}</h4> <button (click)="editTask()">Edit</button>
+    <ul>
+        <li *ngFor="let ingredient of currentRecipe.ingredients">{{ingredient}} <button (click)="editTask()">Edit</button>
+    </ul>
+    <ul>
+        <li *ngFor="let direction of currentRecipe.directions">{{direction}} <button (click)="editTask()">Edit</button>
+    </ul>
+  </div>
+</div>
